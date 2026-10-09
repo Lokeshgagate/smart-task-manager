@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+const apiOrigin = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000';
+const normalizedApiOrigin = /^https?:\/\//.test(apiOrigin) ? apiOrigin : `https://${apiOrigin}`;
+
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: `${normalizedApiOrigin.replace(/\/$/, '')}/api`,
 });
 
 export const getUsers = () => API.get('/users');

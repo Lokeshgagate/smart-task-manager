@@ -1,43 +1,48 @@
-# Smart Task Manager - Full Stack Application
+# Smart Task Manager
 
-A full-stack task management application built with Next.js, Node.js/Express, and Tailwind CSS.
+A full-stack task manager built with Next.js, Express, and Tailwind CSS.
 
-## 🚀 Features
-- **User Authentication:** Mock login system supporting multiple Indian user personas.
-- **Task Management:** Create, update, delete, and view tasks.
-- **Task Dependencies:** Define dependencies between tasks (tasks are blocked until dependent tasks are completed).
-- **Filtering & Views:** Filter tasks by priority (Low, Medium, High) and view user-assigned tasks.
-- **Responsive UI:** Clean interface styled with Tailwind CSS.
+## Features
 
----
+- Mock user selection and task assignment
+- Task creation, updates, deletion, and priority filtering
+- Task dependencies and blocked-task views
+- Responsive interface
 
-## 🛠️ Project Setup & Local Run Instructions
+## Run Locally
 
-### Prerequisites
-Make sure you have **Node.js** (v18 or higher) installed on your system.
+Requires Node.js 20.9 or newer.
 
----
-
-### 1. Backend Setup
-Navigate to the `backend` directory, install dependencies, and start the server:
+In one terminal:
 
 ```bash
 cd backend
-npm install
+npm ci
 npm start
-The backend server will start on http://localhost:5000 (or configured port).
+```
 
+In another terminal:
 
-2. Frontend Setup
-Open a new terminal, navigate to the frontend directory, install dependencies, and start the development server:
-
-Bash
+```bash
 cd frontend
-npm install
+npm ci
 npm run dev
-The frontend application will be live at http://localhost:3000.
+```
 
-📁 Repository Structure
-smart-task-manager/
-├── backend/    # Express API, mock data store, task routes
-└── frontend/   # Next.js App Router, React components, Tailwind styling
+The frontend runs at `http://localhost:3000`; the API runs at `http://localhost:5000`.
+To use a different API origin, set `NEXT_PUBLIC_API_URL` in `frontend/.env.local`.
+
+## Deploy
+
+The repository includes a Render Blueprint that creates the Next.js web service and
+Express API together. Push this repository to GitHub, then in Render choose **New**
+> **Blueprint**, connect `Lokeshgagate/smart-task-manager`, and deploy the services
+from `render.yaml`. The frontend is configured to use the API service automatically.
+
+The demo stores tasks and users in memory. They reset whenever the API restarts or
+spins down; use a persistent database before relying on this deployment for real data.
+
+## Structure
+
+- `backend/`: Express API and in-memory data store
+- `frontend/`: Next.js App Router application
